@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import axios from "../axios"
+import axios from "axios"
 import Youtube from "react-youtube";
 import movieTrailer from "movie-trailer";
 
@@ -13,7 +13,7 @@ function Row({ title, fetchUrl }) {
 
     useEffect(() => {
         async function fetchData() {
-            const request = await axios.get(fetchUrl);
+            const request = await axios.get(`https:api.themoviedb.org/3${fetchUrl}`);
             setMovies(request.data.results);
             return request
         }
