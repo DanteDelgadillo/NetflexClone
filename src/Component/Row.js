@@ -13,7 +13,7 @@ function Row({ title, fetchUrl }) {
 
     useEffect(() => {
         async function fetchData() {
-            const request = await axios.get(`https:api.themoviedb.org/3${fetchUrl}`);
+            const request = await axios.get(`https://api.themoviedb.org/3${fetchUrl}`);
             setMovies(request.data.results);
             return request
         }
