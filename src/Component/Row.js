@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from "axios"
-import Youtube from "react-youtube";
-import movieTrailer from "movie-trailer";
+// import Youtube from "react-youtube";
+// import movieTrailer from "movie-trailer";
 
 const Base_url = " https://image.tmdb.org/t/p/original/"
 
 
 function Row({ title, fetchUrl }) {
     const [movies, setMovies] = useState([]);
-    const [trailerUrl, setTrailerUrl] = useState("");
+    // const [trailerUrl, setTrailerUrl] = useState("");
 
 
     useEffect(() => {
@@ -20,28 +20,28 @@ function Row({ title, fetchUrl }) {
         fetchData()
     }, [fetchUrl])
 
-    const opts = {
-        height: '390',
-        width: '100%',
-        playerVars: {
-            // https://developers.google.com/youtube/player_parameters
-            autoplay: 1,
-        },
-    };
+    // const opts = {
+    //     height: '390',
+    //     width: '100%',
+    //     playerVars: {
+    //         // https://developers.google.com/youtube/player_parameters
+    //         autoplay: 1,
+    //     },
+    // };
 
-    const handleClick = (movie) => {
-        console.log("thisone", movie)
-        if (trailerUrl) {
-            setTrailerUrl("");
-        } else {
-            movieTrailer(movie.name || "")
-                .then(url => {
-                    const urlParams = new URLSearchParams(new URL(url).search)
-                    setTrailerUrl(urlParams.get("v"))
-                })
-                .catch((error) => console.log(error))
-        }
-    }
+    // const handleClick = (movie) => {
+    //     console.log("thisone", movie)
+    //     if (trailerUrl) {
+    //         setTrailerUrl("");
+    //     } else {
+    //         movieTrailer(movie.name || "")
+    //             .then(url => {
+    //                 const urlParams = new URLSearchParams(new URL(url).search)
+    //                 setTrailerUrl(urlParams.get("v"))
+    //             })
+    //             .catch((error) => console.log(error))
+    //     }
+    // }
 
     return (
         <div className="row">
@@ -52,10 +52,10 @@ function Row({ title, fetchUrl }) {
             <div className="row__posters">
                 {/* posters */}
                 {movies.map(movie => (
-                    <img onClick={() => handleClick(movie)} key={movie.id} className="row__poster" src={`${Base_url}${movie.poster_path}`} alt={movie.name} />
+                    <img key={movie.id} className="row__poster" src={`${Base_url}${movie.poster_path}`} alt={movie.name} />
                 ))}
             </div>
-            {trailerUrl && <Youtube videoId={trailerUrl} opts={opts} />}
+            {/* {trailerUrl && <Youtube videoId={trailerUrl} opts={opts} />} */}
 
         </div>
     )
